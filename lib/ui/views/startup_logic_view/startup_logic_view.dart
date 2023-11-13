@@ -9,7 +9,6 @@ class StartupLogicView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<StartupLogicViewModel>.reactive(
         viewModelBuilder: () => StartupLogicViewModel(),
-        onViewModelReady: (model) => model.startUp(context),
         builder: (context, model, child) => const Scaffold());
   }
 }

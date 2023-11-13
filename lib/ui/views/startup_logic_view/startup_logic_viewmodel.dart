@@ -1,20 +1,24 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:stacked/stacked.dart';
+import 'package:tracking_app/services/app_services/auth_service.dart';
 
 import '../../../app/locator.dart';
+import '../../../firebase_options.dart';
 import '../../../helpers/constants/routes_name.dart';
-import '../../../services/app_services/app_state_service.dart';
 
-class StartupLogicViewModel extends ReactiveViewModel {
-  final _appState = locator<AppStateService>();
+class StartupLogicViewModel extends ReactiveViewModel implements Initialisable {
+  final _appState = locator<AuthService>();
   final _router = locator<GoRouter>();
-  void startUp(BuildContext context) async {
-    await _appState.onAppStart();
-    if (_appState.loginState) {
-      return _router.go(AppRoutes.dashboardView);
+  void startUp() async {
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
+    _appState.onAppStart();
+    if (_appState.currentUser != null) {
+      return _router.go(AppRoutes.homeView);
     }
-    if (!_appState.loginState) return _router.go(AppRoutes.loginView);
+    if (_appState.currentUser == null) return _router.go(AppRoutes.loginView);
   }
 
   @override
@@ -22,4 +26,9 @@ class StartupLogicViewModel extends ReactiveViewModel {
   List<ListenableServiceMixin> get listenableServices => [
         _appState,
       ];
+
+  @override
+  void initialise() {
+    startUp();
+  }
 }
