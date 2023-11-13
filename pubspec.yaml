@@ -18,6 +18,8 @@ dependencies:
   one_context: ^2.1.0
   dio: ^5.3.3
   shared_preferences: ^2.2.2
+  google_sign_in: ^6.1.6
+  firebase_auth: ^4.13.0
 
 dev_dependencies:
   flutter_test:
