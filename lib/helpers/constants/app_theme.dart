@@ -5,7 +5,7 @@ import 'colors.dart';
 class AppThemes {
   static ThemeData main({
     bool isDark = false,
-    Color primaryColor = AppColors.primary,
+    Color primaryColor = AppColors.primaryBackground,
   }) {
     return ThemeData(
       fontFamily: 'Quicksand',

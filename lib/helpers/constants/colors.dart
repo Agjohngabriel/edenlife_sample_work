@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const primary = Color(0xFF2CBCEF);
+  static const primaryBackground = Color(0xFFF2F2F2);
   static const primaryOption1 = Color(0xFF343673);
   static const Color green = Color(0xFF4CD964);
   static const white = Color(0xFFFFFFFF);
@@ -25,7 +25,7 @@ class AppColors {
   static const darkblue = Color(0xff343673);
 
   static List<Color> primaryColorOptions = const [
-    primary,
+    primaryBackground,
   ];
   static Color getShade(Color color, {bool darker = false, double value = .1}) {
     assert(value >= 0 && value <= 1);
