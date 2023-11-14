@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:tracking_app/app/locator.dart';
 import 'package:tracking_app/helpers/constants/colors.dart';
 import 'package:tracking_app/helpers/utils/build_context/text_theme.dart';
+import 'package:tracking_app/services/app_services/auth_service.dart';
 import 'package:tracking_app/ui/views/home_view/home_viewmodel.dart';
 
 class HomeView extends StatelessWidget {
@@ -87,7 +89,8 @@ class HomeView extends StatelessWidget {
                         ),
                         child: Text(
                           'Close',
-                          style: context.textTheme.labelMedium,
+                          style: context.textTheme.labelMedium
+                              ?.copyWith(color: AppColors.white),
                         ),
                       ),
                     ),
@@ -98,6 +101,7 @@ class HomeView extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).pop();
+                          locator<AuthService>().signOut();
                         },
                         style: ButtonStyle(
                           backgroundColor:
@@ -110,7 +114,8 @@ class HomeView extends StatelessWidget {
                         ),
                         child: Text(
                           'Sign Out',
-                          style: context.textTheme.labelMedium,
+                          style: context.textTheme.labelMedium
+                              ?.copyWith(color: AppColors.white),
                         ),
                       ),
                     ),

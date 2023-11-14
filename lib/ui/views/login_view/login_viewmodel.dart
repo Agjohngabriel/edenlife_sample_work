@@ -6,7 +6,7 @@ import 'package:tracking_app/app/locator.dart';
 import 'package:tracking_app/helpers/constants/routes_name.dart';
 import 'package:tracking_app/services/app_services/auth_service.dart';
 
-class LoginViewModel extends ReactiveViewModel implements Initialisable {
+class LoginViewModel extends ReactiveViewModel {
   final _authService = locator<AuthService>();
   Future<void> loginWithGoogle() async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -46,22 +46,9 @@ class LoginViewModel extends ReactiveViewModel implements Initialisable {
   }
 
   Future<UserCredential> signInWithGitHub() async {
-    // Create a new provider
     GithubAuthProvider githubProvider = GithubAuthProvider();
 
     return await FirebaseAuth.instance.signInWithProvider(githubProvider);
-  }
-
-  @override
-  void initialise() {
-    // _googleSignIn.onCurrentUserChanged.listen((account) {
-    //   print("started here3");
-    //   _authService.setSignInAccount(account);
-    //   if (_authService.currentGoogleUser != null) {
-    //     print("User is already Authenticated");
-    //   }
-    // });
-    // _googleSignIn.signInSilently();
   }
 
   @override
