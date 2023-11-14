@@ -45,6 +45,13 @@ class LoginViewModel extends ReactiveViewModel implements Initialisable {
     }
   }
 
+  Future<UserCredential> signInWithGitHub() async {
+    // Create a new provider
+    GithubAuthProvider githubProvider = GithubAuthProvider();
+
+    return await FirebaseAuth.instance.signInWithProvider(githubProvider);
+  }
+
   @override
   void initialise() {
     // _googleSignIn.onCurrentUserChanged.listen((account) {

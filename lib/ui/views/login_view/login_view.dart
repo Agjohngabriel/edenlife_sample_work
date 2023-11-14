@@ -51,10 +51,13 @@ class LoginView extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      const SocialLoginButtons(
-                        caption: "Github Sign In",
-                        icon: Image(image: AssetImage(AppAssets.githubIcon)),
-                        color: AppColors.black,
+                      InkWell(
+                        onTap: () => model.signInWithGitHub(),
+                        child: const SocialLoginButtons(
+                          caption: "Github Sign In",
+                          icon: Image(image: AssetImage(AppAssets.githubIcon)),
+                          color: AppColors.black,
+                        ),
                       ),
                       const SizedBox(
                         height: 30,
