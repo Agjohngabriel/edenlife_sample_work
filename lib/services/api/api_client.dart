@@ -4,12 +4,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:one_context/one_context.dart';
 
-import '../../app/locator.dart';
 import '../../helpers/constants/api_endpoints.dart';
-import '../../helpers/constants/local_storage_keys.dart';
 import '../../helpers/utils/api_utils/api_utils.dart';
 import '../../models/api_responses.dart';
-import '../core/local_storage_service.dart';
 
 class ApiClient {
   static final _dio = Dio(
@@ -87,7 +84,6 @@ class ApiClient {
   }
 
   static void _handleDioError(DioError e) {
-    print(e.response);
     if (e.response?.statusCode == 400) {
     } else if (e.response?.statusCode == 403) {
       //TODO::Replace this with an Actual logic
@@ -104,8 +100,6 @@ class ApiClient {
   }
 
   static String _getToken() {
-    String token =
-        locator<LocalStorageService>().getDataFromDisk(Keys.token) ?? "";
-    return token;
+    return "";
   }
 }
