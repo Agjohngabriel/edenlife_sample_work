@@ -2,8 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:tracking_app/app/locator.dart';
+import 'package:tracking_app/helpers/constants/assets.dart';
 import 'package:tracking_app/helpers/constants/colors.dart';
+import 'package:tracking_app/helpers/utils/build_context/build_context.dart';
 import 'package:tracking_app/helpers/utils/build_context/text_theme.dart';
+import 'package:tracking_app/models/enum/order_status_enum.dart';
 import 'package:tracking_app/services/app_services/auth_service.dart';
 import 'package:tracking_app/ui/views/home_view/home_viewmodel.dart';
 
@@ -40,6 +43,27 @@ class HomeView extends StatelessWidget {
                       ),
                     ),
                 ],
+              ),
+              body: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    ...model.orders.map((e) => Card(
+                          child: ListTile(
+                            onTap: () => model.goToOrderDetail(e.orderId),
+                            title: Text(
+                              e.orderItem,
+                              style: context.textTheme.titleSmall,
+                            ),
+                            subtitle: Text(
+                              e.status.name,
+                              style: context.textTheme.labelMedium,
+                            ),
+                            trailing: const Icon(Icons.arrow_forward_ios),
+                          ),
+                        ))
+                  ],
+                ),
               ),
             ));
   }
