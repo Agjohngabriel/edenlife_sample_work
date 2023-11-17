@@ -1,4 +1,8 @@
+
 # Order Tracking App
+
+<img width="1512" alt="Screenshot 2023-11-17 at 08 22 32" src="https://github.com/Agjohngabriel/edenlife_sample_work/assets/47140902/80965ae6-222a-478d-a424-387ff497a628">
+
 
 This Flutter-based application enables users to track their orders in real-time. It incorporates Firebase Auth for user authentication and Ably Realtime for live updates on order statuses.
 
