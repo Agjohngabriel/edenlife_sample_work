@@ -42,10 +42,12 @@ class LoginView extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () => model.loginWithGoogle(),
-                        child: const SocialLoginButtons(
+                        child: SocialLoginButtons(
                           caption: "Google Sign In",
                           color: AppColors.black,
-                          icon: Image(image: AssetImage(AppAssets.googleIcon)),
+                          isBusy: model.isBusy,
+                          icon: const Image(
+                              image: AssetImage(AppAssets.googleIcon)),
                         ),
                       ),
                       const SizedBox(
@@ -53,9 +55,11 @@ class LoginView extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () => model.signInWithGitHub(),
-                        child: const SocialLoginButtons(
+                        child: SocialLoginButtons(
                           caption: "Github Sign In",
-                          icon: Image(image: AssetImage(AppAssets.githubIcon)),
+                          isBusy: model.isBusy,
+                          icon: const Image(
+                              image: AssetImage(AppAssets.githubIcon)),
                           color: AppColors.black,
                         ),
                       ),
@@ -91,10 +95,12 @@ class SocialLoginButtons extends StatelessWidget {
     required this.caption,
     required this.icon,
     required this.color,
+    required this.isBusy,
   });
   final String caption;
   final Widget icon;
   final Color color;
+  final bool isBusy;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -112,14 +118,18 @@ class SocialLoginButtons extends StatelessWidget {
           const SizedBox(
             width: 20,
           ),
-          Expanded(
-            child: Text(
-              caption,
-              textAlign: TextAlign.center,
-              style: context.textTheme.titleLarge
-                  ?.copyWith(color: AppColors.white),
-            ),
-          )
+          isBusy
+              ? const CircularProgressIndicator(
+                  color: Colors.amber,
+                )
+              : Expanded(
+                  child: Text(
+                    caption,
+                    textAlign: TextAlign.center,
+                    style: context.textTheme.titleLarge
+                        ?.copyWith(color: AppColors.white),
+                  ),
+                )
         ],
       ),
     );

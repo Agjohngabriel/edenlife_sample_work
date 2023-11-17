@@ -5,9 +5,11 @@ import 'package:stacked/stacked.dart';
 import 'package:tracking_app/helpers/utils/build_context/build_context.dart';
 import 'package:tracking_app/ui/views/order_details/order_details_viewmodel.dart';
 
+import '../../../app/locator.dart';
 import '../../../helpers/constants/assets.dart';
 import '../../../helpers/constants/colors.dart';
 import '../../../models/enum/order_status_enum.dart';
+import '../../../services/app_services/order_service.dart';
 
 class OrderDetailsView extends StatelessWidget {
   const OrderDetailsView({super.key, required this.orderId});
@@ -60,7 +62,8 @@ class OrderDetailsView extends StatelessWidget {
                       height: 10,
                     ),
                     Text(
-                      "Waiting for the vendor to accept your order.",
+                      locator<OrderServices>()
+                          .getCaptionByStatusName(model.order!.status.name),
                       style: context.textTheme.labelMedium,
                     ),
                     const SizedBox(

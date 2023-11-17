@@ -9,6 +9,7 @@ import 'package:tracking_app/services/app_services/auth_service.dart';
 class LoginViewModel extends ReactiveViewModel {
   final _authService = locator<AuthService>();
   Future<void> loginWithGoogle() async {
+    setBusy(true);
     FirebaseAuth auth = FirebaseAuth.instance;
     final GoogleSignIn googleSignIn = GoogleSignIn(
       scopes: ['email', 'https://www.googleapis.com/auth/userinfo.profile'],
@@ -43,6 +44,7 @@ class LoginViewModel extends ReactiveViewModel {
     } catch (e) {
       print("${e}");
     }
+    setBusy(false);
   }
 
   Future<UserCredential> signInWithGitHub() async {

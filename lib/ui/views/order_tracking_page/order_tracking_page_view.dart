@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
+import 'package:tracking_app/app/locator.dart';
 import 'package:tracking_app/helpers/utils/build_context/text_theme.dart';
 import 'package:tracking_app/models/enum/order_status_enum.dart';
+import 'package:tracking_app/services/app_services/order_service.dart';
 import 'package:tracking_app/ui/views/order_tracking_page/order_tracking_page_viewmodel.dart';
 
 import '../../../helpers/constants/colors.dart';
@@ -88,8 +90,9 @@ class OrderTrackingPageView extends StatelessWidget {
                           status: status.name,
                           isCompleted: isCompleted,
                           timeStamp: timeStamp,
-                          caption: model.getCaptionByStatusName(
-                              status.name), // Example: Completed statuses
+                          caption: locator<OrderServices>()
+                              .getCaptionByStatusName(
+                                  status.name), // Example: Completed statuses
                         );
                       }).toList()
                     ],
