@@ -21,14 +21,14 @@ class OrderServices with ListenableServiceMixin {
         'orderPrice': 25.99,
         'status': 'ORDER_PLACED',
       },
-      {
-        'orderId': 2,
-        'orderDate': DateTime.now().toIso8601String(),
-        'orderItem': 'Macbook Pro M2 Pro Headset',
-        'orderQuantity': 1,
-        'orderPrice': 99.99,
-        'status': 'ORDER_PLACED',
-      },
+      // {
+      //   'orderId': 2,
+      //   'orderDate': DateTime.now().toIso8601String(),
+      //   'orderItem': 'Macbook Pro M2 Pro Headset',
+      //   'orderQuantity': 1,
+      //   'orderPrice': 99.99,
+      //   'status': 'ORDER_PLACED',
+      // },
     ];
     List<Order> orders =
         mockOrdersJson.map((json) => Order.fromJson(json)).toList();

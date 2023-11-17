@@ -1,3 +1,54 @@
-# tracking_app
+Order Tracking App
 
-A simple order tracking app with Flutter using Firebase Auth and Ably Realtime
+This Flutter-based application enables users to track their orders in real-time. It incorporates Firebase Auth for user authentication and Ably Realtime for live updates on order statuses.
+Technologies Used
+
+    Flutter: The framework used for building the mobile application.
+    Stacked Architecture: Employed the MVVM pattern through the Stacked package for structured development.
+        [Stacked documentation](https://pub.dev/packages/stacked)
+    Gorouter: Routing system utilized for navigation within the app.
+    Get_it: Dependency injection tool utilized to manage class dependencies.
+    Firebase Auth: Integrated for user authentication purposes.
+    Google_sign_in package: Used for enabling Google and GitHub authentication.
+    Ably_flutter: Implemented for real-time updates on order statuses.
+
+Pages and Functionality
+
+    Homepage:
+        Displays a list of orders.
+        Initialization includes the instantiation of the AblyService class and registering it with Get_it.
+        Opens a connection to Ably for real-time updates.
+
+    Order Detail Page:
+        Displays the full details of a selected order, including:
+            Order ID
+            Order Date
+            Order Item
+            Order Quantity
+            Order Price
+        Real-time updates for order statuses from Ably.
+        Seamlessly switches between the homepage and order detail page while tracking orders in real-time.
+
+Ably Service Class
+Methods
+
+    openConnection:
+        Initializes the AblyService class and creates a connection to the Ably server.
+        This connection is persisted throughout the app's lifecycle.
+
+    subscribeToOrderChannel(orderId):
+        Subscribes to the order channel by passing a specific order ID.
+        Utilizes a unique channel name for each order to manage subscriptions efficiently.
+        In this case, while testing with only one order, a unique channel name is used for testing purposes.
+
+Usage
+
+To run the app:
+
+    Ensure you have Flutter installed.
+    Replace the Ably key in the AblyServiceClass with your own key to test the real-time updates.
+    Run the application using flutter run.
+
+Conclusion
+
+The app successfully integrates Firebase Auth and Ably Realtime to provide users with a seamless order tracking experience. The architecture's use of Stacked along with Gorouter and Get_it allows for maintainable and scalable development.
