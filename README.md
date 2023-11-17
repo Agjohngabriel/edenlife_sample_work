@@ -41,13 +41,49 @@ Methods
         Utilizes a unique channel name for each order to manage subscriptions efficiently.
         In this case, while testing with only one order, a unique channel name is used for testing purposes.
 
-Usage
+Order Service Class
+Methods:
 
-To run the app:
+    mockOrders:
+        Initializes and creates a sample order stored in a reactive value.
+        Could be enhanced by allowing the creation of multiple sample orders for diverse test scenarios.
 
-    Ensure you have Flutter installed.
-    Replace the Ably key in the AblyServiceClass with your own key to test the real-time updates.
-    Run the application using flutter run.
+    getOrder:
+        Retrieves an order by ID.
+
+    updateOrderStatus:
+        Called when the Ably Service class receives a message from the subscription to update an order's status.
+
+Possible Enhancements:
+
+    addMockOrder method:
+        Capability to generate new orders programmatically for additional test cases, expanding test coverage.
+
+    Update Order Status Method:
+        Implement a function that allows updating an order's status from the application UI, triggered by a button click. This simulates status updates initiated by the user within the app.
+
+    Utility Class Extraction:
+        Extract common functionalities like DateTime and string manipulation into utility classes for better organization and reusability.
+Using the App:
+
+To utilize the application effectively, follow these steps:
+
+    Replace the key in the Ably Service class with your Ably API key.
+    To simulate real-time updates from the server, subscribe to the "order_1" channel (default order in this case) using the Ably dashboard console.
+    To push a message from the Ably dashboard console:
+        Set the event name as "order update".
+        The message data should be in the format:
+
+        json
+
+        {
+          "orderId": 1,
+          "status": "ORDER_DELIVERED"
+        }
+
+        Where orderId represents the ID of the order and status is the order status enum.
+
+Implementing these enhancements and instructions will improve the app's functionality, expand test coverage, and enable better management of order statuses and real-time updates.
 
 Conclusion
 
