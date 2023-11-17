@@ -9,7 +9,6 @@ import '../services/app_services/ably_service.dart';
 
 GetIt locator = GetIt.instance;
 Future setUpLocator() async {
-  locator.registerLazySingleton(() => DialogService());
   locator.registerSingleton<GoRouter>(router());
   locator.registerLazySingleton(() => AuthService());
   locator.registerLazySingleton(() => AblyServiceClass());
