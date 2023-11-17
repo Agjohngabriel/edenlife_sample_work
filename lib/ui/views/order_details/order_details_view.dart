@@ -16,7 +16,10 @@ class OrderDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<OrderDetailsViewModel>.reactive(
         viewModelBuilder: () => OrderDetailsViewModel(),
-        onViewModelReady: (model) => model.getOrderById(orderId),
+        onViewModelReady: (model) {
+          model.getOrderById(orderId);
+          model.addListenerToOrder(orderId);
+        },
         builder: (context, model, child) => Scaffold(
               backgroundColor: AppColors.primaryBackground,
               appBar: AppBar(
@@ -38,8 +41,8 @@ class OrderDetailsView extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: context.heightPercent(0.1),
                     ),
                     Center(
                         child: Image.asset(
@@ -180,11 +183,13 @@ class OrderDetailsView extends StatelessWidget {
       children: [
         Text(
           caption,
-          style: context.textTheme.titleSmall,
+          style:
+              context.textTheme.labelMedium?.copyWith(color: AppColors.text50),
         ),
         Text(
           value,
-          style: context.textTheme.labelMedium,
+          style:
+              context.textTheme.titleSmall?.copyWith(color: AppColors.text60),
         )
       ],
     );

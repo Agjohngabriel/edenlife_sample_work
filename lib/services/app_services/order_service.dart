@@ -15,22 +15,25 @@ class OrderServices with ListenableServiceMixin {
     List<Map<String, dynamic>> mockOrdersJson = [
       {
         'orderId': 1,
-        'orderDate': '2023-11-15T10:30:00.000Z',
-        'orderItem': 'Product A',
+        'orderDate': DateTime.now().toIso8601String(),
+        'orderItem': 'AirPod Pro Max Headset',
         'orderQuantity': 2,
         'orderPrice': 25.99,
         'status': 'ORDER_PLACED',
-        "orderStatusUpdates": [
-          {
-            'status': OrderStatus.ORDER_PLACED,
-            'timestamp': DateTime.now(),
-          }
-        ]
+      },
+      {
+        'orderId': 2,
+        'orderDate': DateTime.now().toIso8601String(),
+        'orderItem': 'Macbook Pro M2 Pro Headset',
+        'orderQuantity': 1,
+        'orderPrice': 99.99,
+        'status': 'ORDER_PLACED',
       },
     ];
     List<Order> orders =
         mockOrdersJson.map((json) => Order.fromJson(json)).toList();
     _orders.value = orders;
+    updateOrderStatus(1, OrderStatus.ORDER_PLACED, DateTime.now());
     notifyListeners();
   }
 

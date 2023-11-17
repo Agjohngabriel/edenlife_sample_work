@@ -27,6 +27,13 @@ class OrderDetailsViewModel extends ReactiveViewModel {
     notifyListeners();
   }
 
+
+  void addListenerToOrder(int id) {
+    _orderService.addListener(() {
+      _order = _orderService.getOrder(id);
+      notifyListeners();
+    });
+  }
   @override
   List<ListenableServiceMixin> get listenableServices => [_orderService];
 }

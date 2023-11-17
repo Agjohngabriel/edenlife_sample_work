@@ -33,9 +33,6 @@ class AblyServiceClass with ListenableServiceMixin {
   }
 
   void _handleIncomingMessage(Message message) {
-    print("${message.name}");
-    print("${message.timestamp}");
-    print("${message.data}");
     final Map<String, dynamic> data = json.decode(message.data.toString());
     if (data.containsKey('orderId') && data.containsKey('status')) {
       final int orderId = data['orderId'] as int;

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import 'package:tracking_app/app/locator.dart';
 import 'package:tracking_app/helpers/constants/assets.dart';
@@ -51,15 +52,39 @@ class HomeView extends StatelessWidget {
                     ...model.orders.map((e) => Card(
                           child: ListTile(
                             onTap: () => model.goToOrderDetail(e.orderId),
+                            leading: Container(
+                              padding: const EdgeInsets.all(6),
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: AppColors.yellow),
+                              child: const Icon(
+                                Icons.shopping_cart_outlined,
+                                color: AppColors.white,
+                              ),
+                            ),
                             title: Text(
-                              e.orderItem,
+                              "${e.orderQuantity} items",
                               style: context.textTheme.titleSmall,
                             ),
                             subtitle: Text(
-                              e.status.name,
+                              e.orderItem,
                               style: context.textTheme.labelMedium,
                             ),
-                            trailing: const Icon(Icons.arrow_forward_ios),
+                            trailing: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  DateFormat.MMMd().format(e.orderDate),
+                                  style: context.textTheme.titleSmall,
+                                ),
+                                Text(
+                                  "\$ ${e.orderPrice}",
+                                  style: context.textTheme.titleLarge
+                                      ?.copyWith(color: AppColors.green),
+                                ),
+                              ],
+                            ),
                           ),
                         ))
                   ],
